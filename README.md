@@ -150,7 +150,7 @@ Depending on the substrate chosen, a folder will be created ("Output_for_Samplin
 ### 7. Random sampling of metabolite concentration/driving force
 
 ##### Scripts:
-'metabolite_sampling/ThermoCup_HnR_MetaboliteSampling_210616.py' - python script that reads in data from the folders created under  5. for each EFM, and performs hit-and-run metabolite sampling, 5000 steps. Needs to be run for all EFMs for each substrate separately.
+'Metabolite_sampling/ThermoCup_HnR_MetaboliteSampling.py' - python script that reads in data from the folders created under  5. for each EFM, and performs hit-and-run metabolite sampling, 5000 steps. Needs to be run for all EFMs for each substrate separately.
 
 ##### Input:
 Data created for each EFM under 5.
