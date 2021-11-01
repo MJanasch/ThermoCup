@@ -21,15 +21,16 @@ Requires Support scripts:
 
 
 ##### Input data: 
-'Model/Cupriavidus_Core_XII_PHB.xlsx' - excel file containing the model structure (Supplementary file S1 in the article)
+'Model/Cupriavidus_Core_XII_PHB.xlsx' - excel file containing the model structure
 
-Optional:
-'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For"), skips the EFMTool enumeration.
 
 ##### Output:
 
 Yield values for EFMs leading to either PHB and/or biomass production from the corresponding substrate, as well as the corresponding MDF values.
 The values for each substrate were saved as 'Data/ThermoCup_InputDataforScores_Frc.mat', 'ThermoCup_InputDataforScores_Suc.mat' and 'ThermoCup_InputDataforScores_For.mat', to be used for "2. Reaction Usage" and "3. Yield and MDF Scores"
+
+Recommended:
+Save all enumerated EFMs for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For"), in one file containing all enumerated EFMs 'ThermoCup_All_Enumerated_EFMs.mat' into the Data subfolder, to skip the EFMTool enumeration in future applications.
 
 ---
 
@@ -40,7 +41,7 @@ The values for each substrate were saved as 'Data/ThermoCup_InputDataforScores_F
 
 
 ##### Input data:
-'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For")
+'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For"), created in Step 1.
 
 EFM_Count data as part of 'Data/ThermoCup_InputDataforScores_Frc.mat', 'ThermoCup_InputDataforScores_Suc.mat' and 'ThermoCup_InputDataforScores_For.mat' for the three substrates, respectively.
 
@@ -77,7 +78,7 @@ Three "Result" tables (one for each strain) containing data points for Biomass a
 ##### Input data:
 'Model/Cupriavidus_Core_XII_PHB.xlsx' - excel file containing the model structure
 
-'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For")
+'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For"), created in Step 1.
 
 Biomass/PHB yield data and MDF data as part of 'Data/ThermoCup_InputDataforScores_Frc.mat', 'ThermoCup_InputDataforScores_Suc.mat' and 'ThermoCup_InputDataforScores_For.mat' for the three substrates, respectively.
 
@@ -130,7 +131,7 @@ Requires Support scripts:
 ##### Input:
 'Model/Cupriavidus_Core_XII_PHB.xlsx' - excel file containing the model structure
 
-'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For")
+'Data/ThermoCup_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for all three substrates ("mnet_Frc", "mnet_Suc", "mnet_For"), created in Step 1.
 
 
 ##### Output:
