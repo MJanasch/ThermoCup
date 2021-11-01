@@ -164,7 +164,7 @@ Data created for each EFM under 5.
 
 
 ##### Output:
-For each EFM, two text-files are being created. They contain the median driving force for each reaction in the corresponding EFM (froom 5000 steps) and their MAD, respectively. The text-files are saved in the folders "Substrat_PHB_Median" and "Substrate_PHB_MAD".
+For each EFM, two text-files are being created. They contain the median driving force for each reaction in the corresponding EFM (from 5000 steps) and their MAD, respectively. The text-files are saved in the folders "Substrat_PHB_Median" and "Substrate_PHB_MAD".
 
 Optional:
 Output of all 5000 metabolite concentration sets for each EFM.
