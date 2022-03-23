@@ -15,11 +15,11 @@ Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1
 The substrate needs to be defined ("Frc" or "For"), as is described in the script. |
 Requires Support scripts:
 
-`Support/ThermoCup_ReadExcel.m`
-`Support/ThermoCup_MDF.m`
-`Support/ThermoCup_SolveLP_MDF.m`
-`Support/ThermoCup_CalculateTransportEnergy.m`
-`Support/ThermoCup_FindIndex.m`
+`Support/ThermoCup_ReadExcel.m`. 
+`Support/ThermoCup_MDF.m`. 
+`Support/ThermoCup_SolveLP_MDF.m`. 
+`Support/ThermoCup_CalculateTransportEnergy.m`. 
+`Support/ThermoCup_FindIndex.m`. 
 
 
 ##### Input data: 
