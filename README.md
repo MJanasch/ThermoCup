@@ -11,15 +11,15 @@ Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1
 
 ##### Scripts
 
-`ThermoCup_II_EnumerateEFMs.m` - script to enumerate EFMs (Elementary flux modes) and perform MDF analysis, but no variability analysis |
-The substrate needs to be defined ("Frc" or "For"), as is described in the script. |
-Requires Support scripts:
+`ThermoCup_II_EnumerateEFMs.m` - script to enumerate EFMs (Elementary flux modes) and perform MDF analysis, but no variability analysis  
+The substrate needs to be defined ("Frc" or "For"), as is described in the script.  
+Requires Support scripts:  
 
-`Support/ThermoCup_ReadExcel.m`. 
-`Support/ThermoCup_MDF.m`. 
-`Support/ThermoCup_SolveLP_MDF.m`. 
-`Support/ThermoCup_CalculateTransportEnergy.m`. 
-`Support/ThermoCup_FindIndex.m`. 
+`Support/ThermoCup_ReadExcel.m`  
+`Support/ThermoCup_MDF.m`  
+`Support/ThermoCup_SolveLP_MDF.m`  
+`Support/ThermoCup_CalculateTransportEnergy.m`  
+`Support/ThermoCup_FindIndex.m`  
 
 
 ##### Input data: 
@@ -28,10 +28,10 @@ Requires Support scripts:
 
 ##### Output:
 
-Yield values for EFMs leading to either PHB and/or biomass production from the corresponding substrate, as well as the corresponding MDF values. |
+Yield values for EFMs leading to either PHB and/or biomass production from the corresponding substrate, as well as the corresponding MDF values.  
 The values for each substrate were saved as `Data/ThermoCup_InputDataforScores_Frc.mat` and `ThermoCup_InputDataforScores_For.mat`, to be used for "2. Reaction Usage" and "3. Yield and MDF Scores"
 
-Recommended: |
+Recommended:  
 Save all enumerated EFMs for both substrates ("mnet_Frc", "mnet_For"), in one file containing all enumerated EFMs `ThermoCup_II_All_Enumerated_EFMs.mat` into the Data subfolder, to skip the EFMTool enumeration in future applications.
 
 ---
@@ -56,11 +56,11 @@ EFM_Count data as part of `Data/ThermoCup_InputDataforScores_Frc.mat` and `Therm
 ### 3. Production envelope calculation via Flux Balance Analysis (FBA)
 
 ##### Scripts:
-Scripts for FBA are found in the folder `CupriavidusCoreFBA`. |
+Scripts for FBA are found in the folder `CupriavidusCoreFBA`.  
 `ThermoCup_FBA_II.m` - script to calculate maximum yields as well as production envelope. Reaction constraints need to be adjusted according to substrate utilization.
 
-Requires `ThermoCup_ReadExcel_FBA.m` - function to read in the CupriaCore FBA model. |
-Requires furthermore installed COBRA toolbox, see https://opencobra.github.io/cobratoolbox/stable/.
+Requires `ThermoCup_ReadExcel_FBA.m` - function to read in the CupriaCore FBA model.  
+Requires furthermore installed COBRA toolbox, see https://opencobra.github.io/cobratoolbox/stable/ 
 
 
 ##### Input data:
@@ -98,29 +98,30 @@ Biomass/PHB yield data and MDF data as part of `Data/ThermoCup_InputDataforScore
 ##### Scripts:
 `ThermoCup_II_MDF_EVA_DataOut.m` - script similar to `ThermoCup_II_EnumerateEFMs.m`, with addition of the variability analysis. Loops through all EFMs, determines MDF and performs metabolite variability analysis and saves all data in .txt files to be used as input for metabolite sampling and for `ThermoCup_AS2_TransformMetRanges.m`. Needs to be run for each substrate seperately.
 
-Requires Support scripts: \
-'Support/ThermoCup_ReadExcel.m' \
-'Support/ThermoCup_MDF.m'
-'Support/ThermoCup_SolveLP_MDF.m'
-'Support/ThermoCup_CalculateTransportEnergy.m'
-'Support/ThermoCup_FindIndex.m'
-'Support/ThermoCup_MDF_EVA.m'
+Requires Support scripts:
+
+`Support/ThermoCup_ReadExcel.m`  
+`Support/ThermoCup_MDF.m`  
+`Support/ThermoCup_SolveLP_MDF.m`  
+`Support/ThermoCup_CalculateTransportEnergy.m`  
+`Support/ThermoCup_FindIndex.m`  
+`Support/ThermoCup_MDF_EVA.m`  
 
 ##### Input:
-'Model/Cupriavidus_Core_XIV_PHB.xlsx' - excel file containing the model structure
+`Model/Cupriavidus_Core_XIV_PHB.xlsx` - excel file containing the model structure
 
-'Data/ThermoCup_II_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
+`Data/ThermoCup_II_All_Enumerated_EFMs.mat` - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
 
 
 ##### Output:
-Depending on the substrate chosen, a folder will be created ("Output_for_Sampling_Frc", "Output_for_Sampling_For"). Each folder contains subfolder, containing a textfile for each EFM containing information to be used as input for metabolite sampling and subsequent analysis:
-- Initial Concentration ("Conc_Init")
-- standard Gibbs Free Energy change ("dG0")
-- MDF ("MDF")
-- Metabolite Ranges from variability analysis ("Met_Ranges")
-- Names of reactions and metabolites included in the specific EFM ("Name_References")
-- Matrix for cofactor ratios ("Ratio_Matrix")
-- Stoichiometric Matrix ("S_Matrix")
+Depending on the substrate chosen, a folder will be created ("Output_for_Sampling_Frc", "Output_for_Sampling_For"). Each folder contains subfolder, containing a textfile for each EFM containing information to be used as input for metabolite sampling and subsequent analysis:  
+- Initial Concentration ("Conc_Init") 
+- standard Gibbs Free Energy change ("dG0")  
+- MDF ("MDF")  
+- Metabolite Ranges from variability analysis ("Met_Ranges")  
+- Names of reactions and metabolites included in the specific EFM ("Name_References")  
+- Matrix for cofactor ratios ("Ratio_Matrix")  
+- Stoichiometric Matrix ("S_Matrix") 
 
 
 ---
@@ -128,17 +129,17 @@ Depending on the substrate chosen, a folder will be created ("Output_for_Samplin
 ### 6. Random sampling of metabolite concentration/driving force
 
 ##### Scripts:
-'Metabolite_sampling/ThermoCup_HnR_MetaboliteSampling.py' - python script that reads in data from the folders created under 5. for each EFM, and performs hit-and-run metabolite sampling, 5000 steps. Needs to be run for all EFMs for each substrate separately.
+`Metabolite_sampling/ThermoCup_HnR_MetaboliteSampling.py` - python script that reads in data from the folders created under 5. for each EFM, and performs hit-and-run metabolite sampling, 5000 steps. Needs to be run for all EFMs for each substrate separately.
 
 ##### Input:
-Data created for each EFM under 5.
-- Initial Concentration ("Conc_Init")
-- standard Gibbs Free Energy change ("dG0")
-- MDF ("MDF")
-- Metabolite Ranges from variability analysis ("Met_Ranges")
-- Names of reactions and metabolites included in the specific EFM ("Name_References")
-- Matrix for cofactor ratios ("Ratio_Matrix")
-- Stoichiometric Matrix ("S_Matrix")
+Data created for each EFM under 5.  
+- Initial Concentration ("Conc_Init")  
+- standard Gibbs Free Energy change ("dG0")  
+- MDF ("MDF")  
+- Metabolite Ranges from variability analysis ("Met_Ranges")  
+- Names of reactions and metabolites included in the specific EFM ("Name_References")  
+- Matrix for cofactor ratios ("Ratio_Matrix")  
+- Stoichiometric Matrix ("S_Matrix")  
 
 
 ##### Output:
@@ -154,46 +155,47 @@ Output of all 5000 metabolite concentration sets for each EFM.
 ##### Scripts:
 AS - "After Sampling"
 
-1) 'ThermoCup_AS1_SortnPrepareDF' - script that loads driving forces, MDF and reaction names for each EFM and puts into more usable data structure in matlab. Furthermore it sorts the EFMs after 1) their MDF value and 2) EFMs with the same MDF value are sorted by the mean of their driving forces. Needs to be run sperataly for each substrate.
+1) `ThermoCup_AS1_SortnPrepareDF.m` - script that loads driving forces, MDF and reaction names for each EFM and puts into more usable data structure in matlab. Furthermore it sorts the EFMs after 1) their MDF value and 2) EFMs with the same MDF value are sorted by the mean of their driving forces. Needs to be run sperataly for each substrate.
 
 
-2) 'ThermoCup_AS2_TransformMetRanges.m' - script that reads in metabolite ranges from the variability analysis and sorted indices from 1), to sort metabolite ranges and put data into structure and outputs text-files to create supplementary figures S7-S8. Needs to be run sperataly for each substrate.
+2) `ThermoCup_AS2_TransformMetRanges.m` - script that reads in metabolite ranges from the variability analysis and sorted indices from 1), to sort metabolite ranges and put data into structure and outputs text-files to create supplementary figures S7-S8. Needs to be run sperataly for each substrate.
 
 
-3) 'ThermoCup_AS3_GetDFNorm_and_DFSumsAcCoA.m' - script that reads in the sorted DF-datastructure from 1), relates each reaction's DF to the MDF of the EFM, thereby finding how far away the DF is from the MDF. This identifies which reactions are at the thermodynamic limit of the MDF. In a second part the script sums all DFs leading to acetyl-CoA. The script creates the data used for figure 4 and 5, as well as supplementary figures S6-S8. Needs to be run sperataly for each substrate.
+3) `ThermoCup_AS3_GetDFNorm_and_DFSumsAcCoA.m` - script that reads in the sorted DF-datastructure from 1), relates each reaction's DF to the MDF of the EFM, thereby finding how far away the DF is from the MDF. This identifies which reactions are at the thermodynamic limit of the MDF. In a second part the script sums all DFs leading to acetyl-CoA. The script creates the data used for figure 4 and 5, as well as supplementary figures S6-S8. Needs to be run sperataly for each substrate.
 
-4) 'ThermoCup_AS4_GetDF_Map.m' - script to create DF overview for the two metabolic strategies found for formate.
+4) `ThermoCup_AS4_GetDF_Map.m` - script to create DF overview for the two metabolic strategies found for formate.
 
 
 ##### Input:
-1) From random sampling and variability analysis:
-- Name_References (Names of all reactions and metabolites for each EFM)
-- MDF (MDF value for each EFM)
-- PHB_Median (Median DFs for each reaction for each EFM)
-- PHB_MAD (MADs of the DFs for each reaction for each EFM)
+1) From random sampling and variability analysis:  
+- Name_References (Names of all reactions and metabolites for each EFM)  
+- MDF (MDF value for each EFM)  
+- PHB_Median (Median DFs for each reaction for each EFM)  
+- PHB_MAD (MADs of the DFs for each reaction for each EFM)  
 
 
 2) 
-- 'Model/Cupriavidus_Core_XIV_PHB.xlsx' - excel file containing the model structure
-From random sampling and variability analysis:
-- Name_References (Names of all reactions and metabolites for each EFM)
-- MDF (MDF value for each EFM)
-- Met_Ranges (Metabolite Ranges from vriability analysis)
+- `Model/Cupriavidus_Core_XIV_PHB.xlsx` - excel file containing the model structure  
+From random sampling and variability analysis:  
+- Name_References (Names of all reactions and metabolites for each EFM)  
+- MDF (MDF value for each EFM)  
+- Met_Ranges (Metabolite Ranges from vriability analysis)  
 
-- Sorted indices from 1) ('Indices_DoubleSorted_Frc.mat' and 'Indices_DoubleSorted_For.mat')
+- Sorted indices from 1) (`Indices_DoubleSorted_Frc.mat` and `Indices_DoubleSorted_For.mat`)
 
 
 3)
-- Sorted DF from 1) ('Sorted_EFMs_Frc_DF.mat', 'Sorted_EFMs_For_DF.mat')
+- Sorted DF from 1) (`Sorted_EFMs_Frc_DF.mat`, `Sorted_EFMs_For_DF.mat`)
 
 
 4) 
-- 'Model/Cupriavidus_Core_XIV_PHB.xlsx' - excel file containing the model structure
-- Sorted DF from 1) for formate ('Sorted_EFMs_For_DF.mat')
+- `Model/Cupriavidus_Core_XIV_PHB.xlsx` - excel file containing the model structure
+- Sorted DF from 1) for formate (`Sorted_EFMs_For_DF.mat`)
 
 ##### Output:
-1) Datastructure containing DFs for each reaction of each EFM, EFMs sorted by 1) MDF and 2) mean over all DFs. Saved as 'Sorted_EFMs_Frc_DF.mat', 'Sorted_EFMs_For_DF.mat'.
-Additionally saves indices of sorted EFMs to be able to sort metabolite ranges accordingly, as 'Indices_DoubleSorted_Frc.mat', 'Indices_DoubleSorted_Suc.mat' and 'Indices_DoubleSorted_For.mat'.
+1) Datastructure containing DFs for each reaction of each EFM, EFMs sorted by 1) MDF and 2) mean over all DFs.  
+Saved as `Sorted_EFMs_Frc_DF.mat`, `Sorted_EFMs_For_DF.mat`.  
+Additionally saves indices of sorted EFMs to be able to sort metabolite ranges accordingly, as `Indices_DoubleSorted_Frc.mat` and `Indices_DoubleSorted_For.mat`.
 
 
 2) Textfiles containing Max/min concentration for each metabolite for each EFM, sorted by 1) MDF and 2) mean DF. If a metabolite is not part of the corresponding EFM, the value was arbitrarily set to 1000. The header needed for the R script is created as well.
