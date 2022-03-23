@@ -2,8 +2,8 @@
 
 # ThermoCup - Thermodynamic analysis of the core metabolism in Cupriavidus necator in different substrate utilization scenarios
 
-Code for computational analysis used in Janasch et al., 2022
-Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1
+Code for computational analysis used in Janasch et al., 2022 |
+Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1 |
 
 ---
 
@@ -11,41 +11,41 @@ Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1
 
 ##### Scripts
 
-'ThermoCup_II_EnumerateEFMs.m' - script to enumerate EFMs (Elementary flux modes) and perform MDF analysis, but no variability analysis
-The substrate needs to be defined ("Frc" or "For"), as is described in the script.
+`ThermoCup_II_EnumerateEFMs.m` - script to enumerate EFMs (Elementary flux modes) and perform MDF analysis, but no variability analysis |
+The substrate needs to be defined ("Frc" or "For"), as is described in the script. |
 Requires Support scripts:
 
-'Support/ThermoCup_ReadExcel.m'
-'Support/ThermoCup_MDF.m'
-'Support/ThermoCup_SolveLP_MDF.m'
-'Support/ThermoCup_CalculateTransportEnergy.m'
-'Support/ThermoCup_FindIndex.m'
+`Support/ThermoCup_ReadExcel.m`
+`Support/ThermoCup_MDF.m`
+`Support/ThermoCup_SolveLP_MDF.m`
+`Support/ThermoCup_CalculateTransportEnergy.m`
+`Support/ThermoCup_FindIndex.m`
 
 
 ##### Input data: 
-'Model/Cupriavidus_Core_XIV_PHB.xlsx' - excel file containing the model structure
+`Model/Cupriavidus_Core_XIV_PHB.xlsx` - excel file containing the model structure
 
 
 ##### Output:
 
-Yield values for EFMs leading to either PHB and/or biomass production from the corresponding substrate, as well as the corresponding MDF values.
-The values for each substrate were saved as 'Data/ThermoCup_InputDataforScores_Frc.mat' and 'ThermoCup_InputDataforScores_For.mat', to be used for "2. Reaction Usage" and "3. Yield and MDF Scores"
+Yield values for EFMs leading to either PHB and/or biomass production from the corresponding substrate, as well as the corresponding MDF values. |
+The values for each substrate were saved as `Data/ThermoCup_InputDataforScores_Frc.mat` and `ThermoCup_InputDataforScores_For.mat`, to be used for "2. Reaction Usage" and "3. Yield and MDF Scores"
 
-Recommended:
-Save all enumerated EFMs for both substrates ("mnet_Frc", "mnet_For"), in one file containing all enumerated EFMs 'ThermoCup_II_All_Enumerated_EFMs.mat' into the Data subfolder, to skip the EFMTool enumeration in future applications.
+Recommended: |
+Save all enumerated EFMs for both substrates ("mnet_Frc", "mnet_For"), in one file containing all enumerated EFMs `ThermoCup_II_All_Enumerated_EFMs.mat` into the Data subfolder, to skip the EFMTool enumeration in future applications.
 
 ---
 
 ### 2. Reaction Usage
 
 ##### Scripts:
-'ThermoCup_II_GetReactionUsage.m' - script to analyze reaction usage, needs to be run independently for each strain and substrate. Splits reversible reactions and calculates number of EFMs that use a particular reaction, as a fraction of all EFMs analyzed. Data is used for Supplementary figure S2)
+`ThermoCup_II_GetReactionUsage.m` - script to analyze reaction usage, needs to be run independently for each strain and substrate. Splits reversible reactions and calculates number of EFMs that use a particular reaction, as a fraction of all EFMs analyzed. Data is used for Supplementary figure S2)
 
 
 ##### Input data:
-'Data/ThermoCup_II_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
+`Data/ThermoCup_II_All_Enumerated_EFMs.mat` - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
 
-EFM_Count data as part of 'Data/ThermoCup_InputDataforScores_Frc.mat' and 'ThermoCup_InputDataforScores_For.mat' for both substrates, respectively.
+EFM_Count data as part of `Data/ThermoCup_InputDataforScores_Frc.mat` and `ThermoCup_InputDataforScores_For.mat` for both substrates, respectively.
 
 ##### Output:
 
@@ -56,15 +56,15 @@ EFM_Count data as part of 'Data/ThermoCup_InputDataforScores_Frc.mat' and 'Therm
 ### 3. Production envelope calculation via Flux Balance Analysis (FBA)
 
 ##### Scripts:
-Scripts for FBA are found in the folder 'CupriavidusCoreFBA'.
-'ThermoCup_FBA_II.m' - script to calculate maximum yields as well as production envelope. Reaction constraints need to be adjusted according to substrate utilization.
+Scripts for FBA are found in the folder `CupriavidusCoreFBA`. |
+`ThermoCup_FBA_II.m` - script to calculate maximum yields as well as production envelope. Reaction constraints need to be adjusted according to substrate utilization.
 
-Requires 'ThermoCup_ReadExcel_FBA.m' - function to read in the CupriaCore FBA model.
+Requires `ThermoCup_ReadExcel_FBA.m` - function to read in the CupriaCore FBA model. |
 Requires furthermore installed COBRA toolbox, see https://opencobra.github.io/cobratoolbox/stable/.
 
 
 ##### Input data:
-'Model/Cupriavidus_Core_ALL_FBA_II.xlsx' - excel file containing the FBA model structure
+`Model/Cupriavidus_Core_ALL_FBA_II.xlsx` - excel file containing the FBA model structure
 
 ##### Output:
 Three "Result" tables (one for each strain) containing data points for Biomass and PHB yield, forming the production envelope. Needs to be run for each substrate.
@@ -75,14 +75,14 @@ Three "Result" tables (one for each strain) containing data points for Biomass a
 ### 4. Yield and MDF Scores
 
 ##### Scripts:
-'ThermoCup_II_GetReactionScores.m' - script to calculate biomass and PHB yield scores and MDF scores, dependent on the substrate. Also calculates significance via Wilcoxon Rank Sum test and FDR.
+`ThermoCup_II_GetReactionScores.m` - script to calculate biomass and PHB yield scores and MDF scores, dependent on the substrate. Also calculates significance via Wilcoxon Rank Sum test and FDR.
 
 ##### Input data:
-'Model/Cupriavidus_Core_XII_PHB.xlsx' - excel file containing the model structure
+`Model/Cupriavidus_Core_XII_PHB.xlsx` - excel file containing the model structure
 
-'Data/ThermoCup_II_All_Enumerated_EFMs.mat' - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
+`Data/ThermoCup_II_All_Enumerated_EFMs.mat` - File containing all enumerated EFMs, for both substrates ("mnet_Frc", "mnet_For"), created in Step 1.
 
-Biomass/PHB yield data and MDF data as part of 'Data/ThermoCup_InputDataforScores_Frc.mat' and 'ThermoCup_InputDataforScores_For.mat' for the two substrates, respectively.
+Biomass/PHB yield data and MDF data as part of `Data/ThermoCup_InputDataforScores_Frc.mat` and `ThermoCup_InputDataforScores_For.mat` for the two substrates, respectively.
 
 ##### Output:
 
@@ -96,10 +96,10 @@ Biomass/PHB yield data and MDF data as part of 'Data/ThermoCup_InputDataforScore
 ### 5. Metabolite variability analysis and metabolite sampling preparation
 
 ##### Scripts:
-'ThermoCup_II_MDF_EVA_DataOut.m' - script similar to 'ThermoCup_II_EnumerateEFMs.m', with addition of the variability analysis. Loops through all EFMs, determines MDF and performs metabolite variability analysis and saves all data in .txt files to be used as input for metabolite sampling and for 'ThermoCup_AS2_TransformMetRanges.m'. Needs to be run for each substrate seperately.
+`ThermoCup_II_MDF_EVA_DataOut.m` - script similar to `ThermoCup_II_EnumerateEFMs.m`, with addition of the variability analysis. Loops through all EFMs, determines MDF and performs metabolite variability analysis and saves all data in .txt files to be used as input for metabolite sampling and for `ThermoCup_AS2_TransformMetRanges.m`. Needs to be run for each substrate seperately.
 
-Requires Support scripts:
-'Support/ThermoCup_ReadExcel.m'
+Requires Support scripts: \
+'Support/ThermoCup_ReadExcel.m' \
 'Support/ThermoCup_MDF.m'
 'Support/ThermoCup_SolveLP_MDF.m'
 'Support/ThermoCup_CalculateTransportEnergy.m'
