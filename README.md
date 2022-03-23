@@ -2,8 +2,8 @@
 
 # ThermoCup - Thermodynamic analysis of the core metabolism in Cupriavidus necator in different substrate utilization scenarios
 
-Code for computational analysis used in Janasch et al., 2022 |
-Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1 |
+Code for computational analysis used in Janasch et al., 2022  
+Found on BioRxiv: https://www.biorxiv.org/content/10.1101/2022.02.22.481442v1  
 
 ---
 
